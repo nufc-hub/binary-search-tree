@@ -5,3 +5,5 @@ class Node {
     this.rightNode = rightNode; // Reference to a right child node.
   }
 }
+
+export default Node;
