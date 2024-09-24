@@ -138,6 +138,11 @@ class Tree {
     return findValueRec(this.root, value);
   }
 
+  // Used as a callback to print node value.
+  printNode(node) {
+    console.log(node.data);
+  }
+
   printTree(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;
