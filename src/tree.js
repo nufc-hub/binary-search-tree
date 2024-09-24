@@ -138,6 +138,39 @@ class Tree {
     return findValueRec(this.root, value);
   }
 
+  // Breadth first level order.
+  levelOrder(callback) {
+    // Throw error if callback is not provided.
+    if (typeof callback !== 'function') {
+      throw new Error('Callback function required as argument.');
+    }
+    // Queues the results.
+    const queue = [];
+
+    // Push root node to queue.
+    if (this.root !== null) {
+      queue.push(this.root);
+    }
+
+    while (queue.length > 0) {
+      // Remove current node from queue.
+      const currentNode = queue.shift();
+
+      // Print the value of the current node.
+      callback(currentNode);
+
+      // If current node has a left child - push it.
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+
+      // If current node has a right child - push it.
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+  }
+
   // Used as a callback to print node value.
   printNode(node) {
     console.log(node.data);
