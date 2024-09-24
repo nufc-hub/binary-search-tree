@@ -171,6 +171,32 @@ class Tree {
     }
   }
 
+  // Display the node values in order.
+  inOrder(callback) {
+    // Throw error if callback is not provided.
+    if (typeof callback !== 'function') {
+      throw new Error('Callback function required as argument.');
+    }
+
+    const inOrderRec = (node) => {
+      if (node === null) {
+        return;
+      }
+
+      // Cycle through left nodes
+      inOrderRec(node.left);
+
+      // Print the current node
+      callback(node);
+
+      // Cycle to right node
+      inOrderRec(node.right);
+    };
+
+    // Starts the recursive inOrderRec function.
+    inOrderRec(this.root);
+  }
+
   // Used as a callback to print node value.
   printNode(node) {
     console.log(node.data);
