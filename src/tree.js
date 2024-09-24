@@ -197,6 +197,32 @@ class Tree {
     inOrderRec(this.root);
   }
 
+  // Display the node values in pre-order.
+  preOrder(callback) {
+    // Throw error if callback is not provided.
+    if (typeof callback !== 'function') {
+      throw new Error('Callback function required as argument.');
+    }
+
+    const preOrderRec = (node) => {
+      if (node === null) {
+        return;
+      }
+
+      // Print the current node
+      callback(node);
+
+      // Cycle through left nodes
+      preOrderRec(node.left);
+
+      // Cycle to right node
+      preOrderRec(node.right);
+    };
+
+    // Starts the recursive preOrderRec function.
+    preOrderRec(this.root);
+  }
+
   // Used as a callback to print node value.
   printNode(node) {
     console.log(node.data);
