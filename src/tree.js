@@ -223,6 +223,32 @@ class Tree {
     preOrderRec(this.root);
   }
 
+  // Display the node values in post-order.
+  postOrder(callback) {
+    // Throw error if callback is not provided.
+    if (typeof callback !== 'function') {
+      throw new Error('Callback function required as argument.');
+    }
+
+    const postOrderRec = (node) => {
+      if (node === null) {
+        return;
+      }
+
+      // Cycle through left nodes
+      postOrderRec(node.left);
+
+      // Cycle to right node
+      postOrderRec(node.right);
+
+      // Print the current node
+      callback(node);
+    };
+
+    // Starts the recursive postOrderRec function.
+    postOrderRec(this.root);
+  }
+
   // Used as a callback to print node value.
   printNode(node) {
     console.log(node.data);
