@@ -274,6 +274,34 @@ class Tree {
     return heightRec(node);
   }
 
+  depth(targetNode) {
+    const depthRec = (currentNode, targetNode, currentDepth) => {
+      // If current node is null, the target node has not been found in this path.
+      if (currentNode === null) {
+        return -1;
+      }
+
+      // If the target node is found, return the current depth.
+      if (currentNode === targetNode) {
+        return currentDepth;
+      }
+
+      // If left branch is not null recursively search the left subtree.
+      let leftDepth = depthRec(currentNode.left, targetNode, currentDepth + 1);
+
+      // If targetNode is found in left subtree, return its depth
+      if (leftDepth !== -1) {
+        return leftDepth;
+      }
+
+      // Otherwise, recursively search the right subtree.
+      return depthRec(currentNode.right, targetNode, currentDepth + 1);
+    };
+
+    // Start from the root with a depth of 0.
+    return depthRec(this.root, targetNode, 0);
+  }
+
   printTree(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;
