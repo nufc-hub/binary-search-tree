@@ -254,6 +254,26 @@ class Tree {
     console.log(node.data);
   }
 
+  height(node) {
+    const heightRec = (node, currentTreeLength, treeLength) => {
+      // Base case: when a node is null the function returns -1
+      // to remove that edge from the overall height.
+      if (node === null) {
+        return -1;
+      }
+
+      // Recursively call left and right subtrees.
+      const leftHeight = heightRec(node.left);
+
+      const rightHeight = heightRec(node.right);
+      // Return the larger of the two values, +1 for the current node.
+      return 1 + Math.max(leftHeight, rightHeight);
+    };
+
+    // Start the recursive function.
+    return heightRec(node);
+  }
+
   printTree(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;
