@@ -255,7 +255,7 @@ class Tree {
   }
 
   height(node) {
-    const heightRec = (node, currentTreeLength, treeLength) => {
+    const heightRec = (node) => {
       // Base case: when a node is null the function returns -1
       // to remove that edge from the overall height.
       if (node === null) {
