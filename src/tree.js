@@ -57,7 +57,7 @@ class Tree {
     // Starts the recursive insertRec function.
     this.root = insertRec(this.root, value);
 
-    // Check if array is balanced. If tree is not balanced, rebalance it.
+    // Check if tree is balanced. If not, rebalance it.
     if (!this.isBalanced()) {
       this.rebalance();
     }
@@ -104,6 +104,11 @@ class Tree {
     };
 
     this.root = deleteRec(this.root, value);
+
+    // Check if tree is balanced. If not, rebalance it.
+    if (!this.isBalanced()) {
+      this.rebalance();
+    }
   }
 
   // Used to find the smallest value.
