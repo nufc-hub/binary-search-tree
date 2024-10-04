@@ -56,6 +56,11 @@ class Tree {
 
     // Starts the recursive insertRec function.
     this.root = insertRec(this.root, value);
+
+    // Check if array is balanced. If tree is not balanced, rebalance it.
+    if (!this.isBalanced()) {
+      this.rebalance();
+    }
   }
 
   delete(value) {
