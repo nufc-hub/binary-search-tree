@@ -335,6 +335,11 @@ class Tree {
     return isBalancedRec(this.root) !== -1;
   }
 
+  rebalance() {
+    const inOrderArray = this.inOrder(this.printNode);
+    this.root = this.buildTree(inOrderArray);
+  }
+
   printTree(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;
