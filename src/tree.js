@@ -302,6 +302,35 @@ class Tree {
     return depthRec(this.root, targetNode, 0);
   }
 
+  isBalanced() {
+    const isBalancedRec = (node) => {
+      // Height of an empty tree.
+      if (node === null) {
+        return 0;
+      }
+
+      // Recursively get the height of left and right subtrees.
+      const leftHeight = isBalancedRec(node.left);
+      const rightHeight = isBalancedRec(node.right);
+
+      // Check if the left or right height is already unbalanced.
+      if (leftHeight === -1 || rightHeight === -1) {
+        return -1; // The subtree is unbalanced if the difference is greater than 1.
+      }
+
+      // Check height difference.
+      if (leftHeight - rightHeight > 1) {
+        return -1;
+      }
+
+      // If balanced then return the height of this nodes subtree.
+      return 1 + Math.max(leftHeight, rightHeight);
+    };
+
+    // Start the recursive function.
+    return isBalancedRec(this.root) !== -1;
+  }
+
   printTree(node = this.root, prefix = '', isLeft = true) {
     if (node === null) {
       return;
