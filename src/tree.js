@@ -172,7 +172,7 @@ class Tree {
   }
 
   // Display the node values in order.
-  inOrder(callback) {
+  inOrder(callback, resultArray = []) {
     // Throw error if callback is not provided.
     if (typeof callback !== 'function') {
       throw new Error('Callback function required as argument.');
@@ -188,6 +188,7 @@ class Tree {
 
       // Print the current node
       callback(node);
+      resultArray.push(node.data); // Store the node value in the array.
 
       // Cycle to right node
       inOrderRec(node.right);
@@ -195,6 +196,9 @@ class Tree {
 
     // Starts the recursive inOrderRec function.
     inOrderRec(this.root);
+
+    // Returns the array from the inOrder traversal.
+    return resultArray;
   }
 
   // Display the node values in pre-order.
