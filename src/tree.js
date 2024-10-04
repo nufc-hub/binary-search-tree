@@ -306,6 +306,7 @@ class Tree {
     return depthRec(this.root, targetNode, 0);
   }
 
+  // Checks if the tree is a balanced tree.
   isBalanced() {
     const isBalancedRec = (node) => {
       // Height of an empty tree.
@@ -323,7 +324,7 @@ class Tree {
       }
 
       // Check height difference.
-      if (leftHeight - rightHeight > 1) {
+      if (Math.abs(leftHeight - rightHeight) > 1) {
         return -1;
       }
 
@@ -335,8 +336,11 @@ class Tree {
     return isBalancedRec(this.root) !== -1;
   }
 
+  // Makes the binary search tree balanced.
   rebalance() {
+    // Create an array containing all the nodes in order.
     const inOrderArray = this.inOrder(this.printNode);
+    // Rebalance the tree and set the new tree as root node.
     this.root = this.buildTree(inOrderArray);
   }
 
